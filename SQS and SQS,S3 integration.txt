@@ -1,0 +1,31 @@
+SQS and SQS,S3 integration
+
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/ways-to-add-notification-config-to-bucket.html
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "example-ID",
+    "Statement": [
+        {
+            "Sid": "example-statement-ID",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "s3.amazonaws.com"
+            },
+            "Action": [
+                "SQS:SendMessage"
+            ],
+            "Resource": "arn:aws:sqs:ap-south-1:777708496834:myqueus",
+            "Condition": {
+                "ArnLike": {
+                    "aws:SourceArn": "arn:aws:s3:::nilotpal-2023"
+                },
+                "StringEquals": {
+                    "aws:SourceAccount": "777708496834"
+                }
+            }
+        }
+    ]
+}
